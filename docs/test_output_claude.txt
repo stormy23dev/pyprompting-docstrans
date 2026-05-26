@@ -1,0 +1,293 @@
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:29:30
+> uv sync
+Using CPython 3.12.0
+Creating virtual environment at: .venv
+Resolved 26 packages in 0.55ms
+      Built docs-translator-cli @ file:///home/stormy23/projects/docs-translator-cli-claude
+Prepared 2 packages in 647ms
+Installed 25 packages in 3ms
+ + annotated-doc==0.0.4
+ + anyio==4.13.0
+ + certifi==2026.5.20
+ + click==8.4.1
+ + coverage==7.14.0
+ + docs-translator-cli==0.1.0 (from file:///home/stormy23/projects/docs-translator-cli-claude)
+ + h11==0.16.0
+ + httpcore==1.0.9
+ + httpx==0.28.1
+ + idna==3.16
+ + iniconfig==2.3.0
+ + markdown-it-py==4.2.0
+ + mdurl==0.1.2
+ + packaging==26.2
+ + platformdirs==4.9.6
+ + pluggy==1.6.0
+ + pygments==2.20.0
+ + pytest==9.0.3
+ + pytest-cov==7.1.0
+ + respx==0.23.1
+ + rich==14.3.4
+ + ruff==0.15.14
+ + shellingham==1.5.4
+ + typer==0.25.1
+ + typing-extensions==4.15.0
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:29:32
+> uv run pytest
+Cannot read termcap database;
+using dumb terminal settings.
+========================================== test session starts ==========================================
+platform linux -- Python 3.12.0, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/stormy23/projects/docs-translator-cli-claude
+configfile: pyproject.toml
+testpaths: tests
+plugins: respx-0.23.1, anyio-4.13.0, cov-7.1.0
+collected 45 items                                                                                      
+
+tests/test_api_client.py .........                                                                [ 20%]
+tests/test_cli_translate_text.py ......                                                           [ 33%]
+tests/test_config.py ........                                                                     [ 51%]
+tests/test_file_translation.py ...                                                                [ 57%]
+tests/test_glossary.py ......                                                                     [ 71%]
+tests/test_history_export.py ...                                                                  [ 77%]
+tests/test_markdown_protection.py .....                                                           [ 88%]
+tests/test_segmentation.py .....                                                                  [100%]
+
+============================================ tests coverage =============================================
+____________________________ coverage: platform linux, python 3.12.0-final-0 ____________________________
+
+Name                                            Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------------
+src/docstrans/__init__.py                           1      0   100%
+src/docstrans/__main__.py                           3      3     0%   3-6
+src/docstrans/api/__init__.py                       0      0   100%
+src/docstrans/api/client.py                       109     29    73%   47-50, 56, 93-94, 107-110, 122-125, 135-145, 148-149, 152, 155
+src/docstrans/api/models.py                        14      0   100%
+src/docstrans/cli.py                              371    231    38%   58, 86-92, 146-147, 160-162, 168, 188-189, 210-213, 216-218, 235-239, 280, 308-311, 314-316, 348-349, 356-361, 364-365, 369-371, 400-439, 460-487, 503-551, 564-579, 594-658, 677-678, 698-700, 715-742, 756-791, 803-865
+src/docstrans/config.py                           116     33    72%   36-38, 55-56, 59, 70, 113-114, 116-117, 119-120, 127-128, 130-131, 137-138, 148, 150-151, 153-154, 169-177
+src/docstrans/constants.py                         28      0   100%
+src/docstrans/db/__init__.py                        0      0   100%
+src/docstrans/db/connection.py                     10      0   100%
+src/docstrans/db/glossary_repo.py                  60      0   100%
+src/docstrans/db/history_repo.py                   55      6    89%   148-149, 151-152, 154-155
+src/docstrans/db/migrations.py                     16      0   100%
+src/docstrans/exceptions.py                        24      0   100%
+src/docstrans/logging_setup.py                     19      0   100%
+src/docstrans/paths.py                              9      1    89%   11
+src/docstrans/services/__init__.py                  0      0   100%
+src/docstrans/services/detection_service.py         5      5     0%   3-10
+src/docstrans/services/export_service.py           45      3    93%   16, 109, 117
+src/docstrans/services/file_service.py             95      9    91%   61, 65-66, 74, 114-116, 148-149
+src/docstrans/services/glossary_service.py         29      2    93%   29-30
+src/docstrans/services/history_service.py           6      6     0%   3-18
+src/docstrans/services/markdown_protection.py      22      0   100%
+src/docstrans/services/segmentation.py             58      7    88%   23-25, 45, 56-58
+src/docstrans/services/translation_service.py      32      1    97%   48
+src/docstrans/ui/__init__.py                        0      0   100%
+src/docstrans/ui/output.py                         27     27     0%   3-47
+-----------------------------------------------------------------------------
+TOTAL                                            1154    363    69%
+========================================== 45 passed in 1.62s ===========================================
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:29:40
+> uv run docstrans doctor
+Config file: ok
+Database: ok
+Log file: ok
+REST API: ok
+Base URL: http://localhost:5000
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:29:47
+> uv run docstrans config-show
+┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
+┃ Key            ┃ Value                                                                   ┃ Source   ┃
+┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
+│ base_url       │ http://localhost:5000                                                   │ file     │
+│ api_key        │ not set                                                                 │ none     │
+│ default_source │ auto                                                                    │ default  │
+│ default_target │ ru                                                                      │ default  │
+│ timeout        │ 20.0                                                                    │ default  │
+│ config_path    │ /home/stormy23/.config/docs-translator-cli/config.json                  │ computed │
+│ db_path        │ /home/stormy23/.local/share/docs-translator-cli/docs-translator.sqlite3 │ computed │
+│ log_path       │ /home/stormy23/.local/state/docs-translator-cli/docs-translator.log     │ computed │
+└────────────────┴─────────────────────────────────────────────────────────────────────────┴──────────┘
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:29:52
+> uv run docstrans glossary-list
+┏━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━┓
+┃ ID ┃ Source term         ┃ Target term            ┃ Langs  ┃ Case sensitive ┃
+┡━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━┩
+│ 1  │ deployment pipeline │ конвейер развертывания │ en->ru │ no             │
+└────┴─────────────────────┴────────────────────────┴────────┴────────────────┘
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:30:00
+> uv run docstrans --help
+                                                                                                         
+ Usage: docstrans [OPTIONS] COMMAND [ARGS]...                                                            
+                                                                                                         
+ Translate documentation files via a LibreTranslate-compatible REST API. (Claude)                        
+                                                                                                         
+╭─ Options ─────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --config-path        PATH   Path to config file.                                                      │
+│ --db-path            PATH   Path to SQLite DB.                                                        │
+│ --base-url           TEXT   LibreTranslate API URL.                                                   │
+│ --api-key            TEXT   API key (masked in output).                                               │
+│ --timeout            FLOAT  HTTP timeout in seconds.                                                  │
+│ --verbose                   Show detailed errors.                                                     │
+│ --no-color                  Disable Rich colors.                                                      │
+│ --version                   Show version.                                                             │
+│ --help                      Show this message and exit.                                               │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ────────────────────────────────────────────────────────────────────────────────────────────╮
+│ translate-text   Translate a text string via REST API.                                                │
+│ translate-file   Translate a documentation file via REST API.                                         │
+│ detect-language  Detect the language of a text string via REST API.                                   │
+│ languages-list   List supported languages from the current API endpoint.                              │
+│ glossary-add     Add a term to the local glossary.                                                    │
+│ glossary-list    List local glossary terms.                                                           │
+│ glossary-remove  Remove a term from the local glossary.                                               │
+│ history-list     Show translation history.                                                            │
+│ export-history   Export translation history to a file.                                                │
+│ config-set       Write a setting to the local config file.                                            │
+│ config-show      Show effective configuration (file + env + defaults).                                │
+│ doctor           Check local environment and API connectivity.                                        │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:30:12
+> uv run docstrans history-list
+┏━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ ID ┃ Created at           ┃ Kind ┃ Langs  ┃ Source preview              ┃ Result preview              ┃
+┡━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ 14 │ 2026-05-25T19:20:16Z │ text │ en->ru │ Configure the deployment    │ Настройка конвейер          │
+│    │                      │      │        │ pipel...                    │ развертыван...              │
+│ 13 │ 2026-05-25T19:18:35Z │ file │ en->ru │ # Docs Translator CLI  Docs │ Переводчик документов       │
+│    │                      │      │        │ Tr...                       │ CLIDocs ...                 │
+│ 12 │ 2026-05-25T19:17:42Z │ text │ en->ru │ Configure the deployment    │ Настройка конвейер          │
+│    │                      │      │        │ pipel...                    │ развертыван...              │
+│ 11 │ 2026-05-25T19:17:36Z │ text │ en->ru │ Hello world                 │ Привет, мир                 │
+│ 10 │ 2026-05-25T17:57:11Z │ file │ en->ru │ # Docs Translator CLI  Docs │ Переводчик документов       │
+│    │                      │      │        │ Tr...                       │ CLIDocs ...                 │
+│ 9  │ 2026-05-25T17:56:24Z │ text │ en->ru │ Configure the deployment    │ Настройка конвейер          │
+│    │                      │      │        │ pipel...                    │ развертыван...              │
+│ 8  │ 2026-05-25T17:56:03Z │ text │ en->ru │ Open the configuration file │ Откройте файл конфигурации  │
+│ 7  │ 2026-05-25T17:55:25Z │ text │ en->ru │ Hello world                 │ Привет, мир                 │
+│ 6  │ 2026-05-25T17:44:18Z │ text │ en->ru │ Open the configuration file │ Откройте файл конфигурации  │
+│ 5  │ 2026-05-25T17:15:05Z │ file │ ru->en │ # Docs Translator CLI       │ #Docs Translator CLI  CLI   │
+│    │                      │      │        │ CLI-ути...                  │ util...                     │
+│ 4  │ 2026-05-25T17:14:19Z │ file │ en->ru │ # Docs Translator CLI       │ Переводчик документов CLI   │
+│    │                      │      │        │ CLI-ути...                  │ CLI...                      │
+│ 3  │ 2026-05-25T17:13:28Z │ text │ en->ru │ Configure the deployment    │ Настройка конвейер          │
+│    │                      │      │        │ pipel...                    │ развертыван...              │
+│ 2  │ 2026-05-25T17:13:07Z │ text │ en->ru │ Open the configuration file │ Откройте файл конфигурации  │
+│ 1  │ 2026-05-25T17:10:58Z │ text │ en->ru │ Hello world                 │ Привет, мир                 │
+└────┴──────────────────────┴──────┴────────┴─────────────────────────────┴─────────────────────────────┘
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:30:21
+> uv run docstrans languages-list
+┏━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Code    ┃ Name                  ┃ Targets                        ┃
+┡━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ en      │ English               │ ar, az, bg, bn, ca, cs, da, de │
+│ sq      │ Albanian              │ ar, az, bg, bn, ca, cs, da, de │
+│ ar      │ Arabic                │ ar, az, bg, bn, ca, cs, da, de │
+│ az      │ Azerbaijani           │ ar, az, bg, bn, ca, cs, da, de │
+│ eu      │ Basque                │ ar, az, bg, bn, ca, cs, da, de │
+│ bn      │ Bengali               │ ar, az, bg, bn, ca, cs, da, de │
+│ bg      │ Bulgarian             │ ar, az, bg, bn, ca, cs, da, de │
+│ ca      │ Catalan               │ ar, az, bg, bn, ca, cs, da, de │
+│ zh-Hans │ Chinese               │ ar, az, bg, bn, ca, cs, da, de │
+│ zh-Hant │ Chinese (traditional) │ ar, az, bg, bn, ca, cs, da, de │
+│ cs      │ Czech                 │ ar, az, bg, bn, ca, cs, da, de │
+│ da      │ Danish                │ ar, az, bg, bn, ca, cs, da, de │
+│ nl      │ Dutch                 │ ar, az, bg, bn, ca, cs, da, de │
+│ eo      │ Esperanto             │ ar, az, bg, bn, ca, cs, da, de │
+│ et      │ Estonian              │ ar, az, bg, bn, ca, cs, da, de │
+│ fi      │ Finnish               │ ar, az, bg, bn, ca, cs, da, de │
+│ fr      │ French                │ ar, az, bg, bn, ca, cs, da, de │
+│ gl      │ Galician              │ ar, az, bg, bn, ca, cs, da, de │
+│ de      │ German                │ ar, az, bg, bn, ca, cs, da, de │
+│ el      │ Greek                 │ ar, az, bg, bn, ca, cs, da, de │
+│ he      │ Hebrew                │ ar, az, bg, bn, ca, cs, da, de │
+│ hi      │ Hindi                 │ ar, az, bg, bn, ca, cs, da, de │
+│ hu      │ Hungarian             │ ar, az, bg, bn, ca, cs, da, de │
+│ id      │ Indonesian            │ ar, az, bg, bn, ca, cs, da, de │
+│ ga      │ Irish                 │ ar, az, bg, bn, ca, cs, da, de │
+│ it      │ Italian               │ ar, az, bg, bn, ca, cs, da, de │
+│ ja      │ Japanese              │ ar, az, bg, bn, ca, cs, da, de │
+│ ko      │ Korean                │ ar, az, bg, bn, ca, cs, da, de │
+│ ky      │ Kyrgyz                │ ar, az, bg, bn, ca, cs, da, de │
+│ lv      │ Latvian               │ ar, az, bg, bn, ca, cs, da, de │
+│ lt      │ Lithuanian            │ ar, az, bg, bn, ca, cs, da, de │
+│ ms      │ Malay                 │ ar, az, bg, bn, ca, cs, da, de │
+│ nb      │ Norwegian             │ ar, az, bg, bn, ca, cs, da, de │
+│ fa      │ Persian               │ ar, az, bg, bn, ca, cs, da, de │
+│ pl      │ Polish                │ ar, az, bg, bn, ca, cs, da, de │
+│ pt      │ Portuguese            │ ar, az, bg, bn, ca, cs, da, de │
+│ pt-BR   │ Portuguese (Brazil)   │ ar, az, bg, bn, ca, cs, da, de │
+│ ro      │ Romanian              │ ar, az, bg, bn, ca, cs, da, de │
+│ ru      │ Russian               │ ar, az, bg, bn, ca, cs, da, de │
+│ sk      │ Slovak                │ ar, az, bg, bn, ca, cs, da, de │
+│ sl      │ Slovenian             │ ar, az, bg, bn, ca, cs, da, de │
+│ es      │ Spanish               │ ar, az, bg, bn, ca, cs, da, de │
+│ sv      │ Swedish               │ ar, az, bg, bn, ca, cs, da, de │
+│ tl      │ Tagalog               │ ar, az, bg, bn, ca, cs, da, de │
+│ th      │ Thai                  │ ar, az, bg, bn, ca, cs, da, de │
+│ tr      │ Turkish               │ ar, az, bg, bn, ca, cs, da, de │
+│ uk      │ Ukrainian             │ ar, az, bg, bn, ca, cs, da, de │
+│ ur      │ Urdu                  │ ar, az, bg, bn, ca, cs, da, de │
+│ vi      │ Vietnamese            │ ar, az, bg, bn, ca, cs, da, de │
+└─────────┴───────────────────────┴────────────────────────────────┘
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:30:58
+> uv run docstrans export-history history.json --format json
+Error: Output file exists, use --overwrite: history.json
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:31:09
+> rm history.json
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:31:12
+> uv run docstrans export-history history.json --format json
+History exported: history.json
+Records exported: 14
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:31:14
+> /usr/bin/cat history.json | head -n 10
+[
+  {
+    "id": 14,
+    "created_at": "2026-05-25T19:20:16Z",
+    "kind": "text",
+    "provider": "libretranslate",
+    "base_url": "http://localhost:5000",
+    "source_lang": "en",
+    "target_lang": "ru",
+    "input_path": null,
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:31:18
+> uv run docstrans translate-text "Configure the deployment pipeline before release" --source en --target ru
+Настройка конвейер развертывания перед выпуском
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:31:32
+> rm README.ru.md
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:31:44
+> rm README.en.md 
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:31:47
+> /usr/bin/cat README.md | head -n 10
+# Docs Translator CLI
+
+CLI-утилита для перевода файлов документации через LibreTranslate-compatible REST API с локальным SQLite-хранилищем истории и пользовательским глоссарием.
+
+## Возможности
+
+- Перевод строк и текстовых файлов (`.md`, `.txt`, `.rst`) через REST API
+- Определение языка текста через REST API
+- Просмотр поддерживаемых языков
+- Пользовательский глоссарий терминов с placeholder-механизмом
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:31:55
+> uv run docstrans translate-file README.md --source ru --target en
+Translated file saved: README.en.md
+Segments translated: 40
+History entry: saved
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:32:21
+> /usr/bin/cat README.en.md | head -n 10
+#Docs Translator CLI
+
+CLI utility for transferring documentation files through the LibreTranslate-compatible REST API with local SQLite-storage of history and a custom glossary.
+
+## Opportunities
+
+Translation of lines and text files (ыхMDPROTECT000006ых, ыхMDPROTECT000007ых, ыхMDPROTECT000008ых) via REST API
+Text Language Definition through REST API
+View supported languages
+User Glossary of Terms with Placeholder Mechanism
+stormy23@stormy23-laptop ~/p/docs-translator-cli-claude 2026-05-25 22:32:27
+> 
+

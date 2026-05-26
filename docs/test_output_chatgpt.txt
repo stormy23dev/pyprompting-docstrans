@@ -1,0 +1,322 @@
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:16:15
+> uv sync
+Using CPython 3.12.0
+Creating virtual environment at: .venv
+Resolved 26 packages in 0.58ms
+      Built docs-translator-cli @ file:///home/stormy23/projects/docs-translator-cli-chatgpt
+Prepared 25 packages in 2.36s
+Installed 25 packages in 4ms
+ + annotated-doc==0.0.4
+ + anyio==4.13.0
+ + certifi==2026.5.20
+ + click==8.4.1
+ + coverage==7.14.0
+ + docs-translator-cli==0.1.0 (from file:///home/stormy23/projects/docs-translator-cli-chatgpt)
+ + h11==0.16.0
+ + httpcore==1.0.9
+ + httpx==0.28.1
+ + idna==3.16
+ + iniconfig==2.3.0
+ + markdown-it-py==4.2.0
+ + mdurl==0.1.2
+ + packaging==26.2
+ + platformdirs==4.9.6
+ + pluggy==1.6.0
+ + pygments==2.20.0
+ + pytest==9.0.3
+ + pytest-cov==7.1.0
+ + respx==0.23.1
+ + rich==15.0.0
+ + ruff==0.15.14
+ + shellingham==1.5.4
+ + typer==0.25.1
+ + typing-extensions==4.15.0
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:16:20
+> uv run pytest
+Cannot read termcap database;
+using dumb terminal settings.
+========================================== test session starts ==========================================
+platform linux -- Python 3.12.0, pytest-9.0.3, pluggy-1.6.0
+rootdir: /home/stormy23/projects/docs-translator-cli-chatgpt
+configfile: pyproject.toml
+testpaths: tests
+plugins: respx-0.23.1, anyio-4.13.0, cov-7.1.0
+collected 22 items                                                                                      
+
+tests/test_api_client.py ..                                                                       [  9%]
+tests/test_cli_translate_text.py ...                                                              [ 22%]
+tests/test_config.py ..                                                                           [ 31%]
+tests/test_detection_languages_doctor.py ...                                                      [ 45%]
+tests/test_file_translation.py ..                                                                 [ 54%]
+tests/test_glossary.py ...                                                                        [ 68%]
+tests/test_history_export.py ..                                                                   [ 77%]
+tests/test_markdown_protection.py ...                                                             [ 90%]
+tests/test_segmentation.py ..                                                                     [100%]
+
+============================================ tests coverage =============================================
+____________________________ coverage: platform linux, python 3.12.0-final-0 ____________________________
+
+Name                                            Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------------
+src/docstrans/__init__.py                           1      0   100%
+src/docstrans/__main__.py                           3      3     0%   1-4
+src/docstrans/api/__init__.py                       0      0   100%
+src/docstrans/api/client.py                        76     30    61%   28, 34-35, 38, 42, 46, 48, 51-53, 65-72, 78, 80, 96-98, 101-107, 110-113, 116-119
+src/docstrans/api/models.py                        11     11     0%   1-16
+src/docstrans/cli.py                              293     78    73%   55-56, 62, 99-102, 112-116, 121, 135, 156, 171-172, 174, 186-187, 218, 222, 247, 269, 274-275, 290-291, 296-297, 309-310, 358-359, 378-379, 397-398, 414, 419-420, 424-442, 459, 461, 473-474, 488-489, 515-519, 544-545, 549-550, 554-563, 565, 573, 577
+src/docstrans/config.py                           101     22    78%   31, 38, 45-46, 48, 55, 57, 66-67, 69, 72, 147-148, 152, 155, 157-164
+src/docstrans/constants.py                         22      0   100%
+src/docstrans/db/__init__.py                        0      0   100%
+src/docstrans/db/connection.py                      9      0   100%
+src/docstrans/db/glossary_repo.py                  55      8    85%   33, 59-84, 104-105, 142
+src/docstrans/db/history_repo.py                   32      6    81%   74-75, 77-78, 80-81
+src/docstrans/db/migrations.py                     13      0   100%
+src/docstrans/exceptions.py                        36      5    86%   19, 24, 44, 54, 59
+src/docstrans/logging_setup.py                     18      0   100%
+src/docstrans/paths.py                             10      1    90%   11
+src/docstrans/services/__init__.py                  0      0   100%
+src/docstrans/services/detection_service.py         9      0   100%
+src/docstrans/services/export_service.py           53      7    87%   35-36, 56, 58, 60-63
+src/docstrans/services/file_service.py            112     16    86%   42, 44, 51-54, 92-95, 98, 117-118, 151, 172, 185, 197
+src/docstrans/services/glossary_service.py         41      1    98%   52
+src/docstrans/services/history_service.py           7      0   100%
+src/docstrans/services/markdown_protection.py      60      2    97%   18, 55
+src/docstrans/services/segmentation.py             57     15    74%   12, 14, 34-35, 37-42, 44, 54-60
+src/docstrans/services/translation_service.py      33      1    97%   53
+src/docstrans/ui/__init__.py                        0      0   100%
+src/docstrans/ui/output.py                         19      9    53%   15, 19-22, 26-29
+-----------------------------------------------------------------------------
+TOTAL                                            1071    215    80%
+========================================== 22 passed in 1.64s ===========================================
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:16:32
+> uv run docstrans --help
+                                                                                                         
+ Usage: docstrans [OPTIONS] COMMAND [ARGS]...                                                            
+                                                                                                         
+ Docs Translator CLI (ChatGPT)                                                                           
+                                                                                                         
+╭─ Options ─────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --config-path        PATH   Path to JSON config file.                                                 │
+│ --db-path            PATH   Path to SQLite database.                                                  │
+│ --base-url           TEXT   LibreTranslate API base URL.                                              │
+│ --api-key            TEXT   Translation API key.                                                      │
+│ --timeout            FLOAT  HTTP timeout in seconds.                                                  │
+│ --verbose                   Enable verbose errors and debug logs.                                     │
+│ --no-color                  Disable Rich colors.                                                      │
+│ --help                      Show this message and exit.                                               │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ────────────────────────────────────────────────────────────────────────────────────────────╮
+│ translate-text                                                                                        │
+│ translate-file                                                                                        │
+│ detect-language                                                                                       │
+│ languages-list                                                                                        │
+│ glossary-add                                                                                          │
+│ glossary-list                                                                                         │
+│ glossary-remove                                                                                       │
+│ history-list                                                                                          │
+│ export-history                                                                                        │
+│ config-set                                                                                            │
+│ config-show                                                                                           │
+│ doctor                                                                                                │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:16:42
+> uv run docstrans doctor
+Config file: ok
+Database: ok
+Log file: ok
+REST API: ok
+Base URL: http://localhost:5000
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:17:06
+> uv run docstrans translate-text "Hello world" --source en --target ru
+Привет, мир
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:17:36
+> uv run docstrans translate-text "Configure the deployment pipeline before release" --source en --target ru
+Настройка конвейер развертывания перед выпуском
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:17:42
+> rm README.ru.md 
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:18:01
+> uv run docstrans translate-file README.md --source en --target ru
+Translated file saved: README.ru.md
+Segments translated: 158
+History entry: saved
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:18:35
+> /usr/bin/cat test
+cat: test: No such file or directory
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:18:43
+> /usr/bin/cat README.md | head 30
+head: cannot open '30' for reading: No such file or directory
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:19:02
+> /usr/bin/cat README.md | head -n 30
+# Docs Translator CLI
+
+Docs Translator CLI is a Python 3.12 command-line utility for translating documentation files and short text strings through a LibreTranslate-compatible REST API. It stores translation history and a user glossary in SQLite.
+
+## Features
+
+- Translate a text string through `POST /translate`.
+- Translate `.txt`, `.md`, and `.rst` files through `POST /translate`.
+- Detect language through `POST /detect`.
+- List supported languages through `GET /languages`.
+- Check local environment and API through `GET /health` with `/languages` fallback.
+- Maintain a local SQLite glossary.
+- Apply glossary terms before API translation through placeholders.
+- Store translation history in SQLite.
+- Export history to JSON, CSV, or Markdown.
+- Configure base URL, API key, default languages, and timeout.
+- Run unit tests without real HTTP requests.
+
+## Requirements
+
+- Python 3.12
+- uv
+
+## Installation
+
+```bash
+uv sync
+```
+
+## CLI help
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:19:12
+> /usr/bin/cat README.ru.md | head -n 30
+Переводчик документов CLIDocs Translator CLI - утилита командной строки Python 3.12 для перевода файлов документации и коротких текстовых строк через совместимый с LibreTranslate REST API. Он хранит историю перевода и пользовательский глоссарий в SQLite.## ОсобенностиПеревод текстовой строки через `POST /translate`.
+Перевод файлов `.txt`, `.md` и `.rst` через `POST /translate`.
+Обнаружение языка с помощью `POST /detect`.
+Список поддерживаемых языков через `GET /languages`.
+Проверьте локальную среду и API через `GET /health` с помощью резервного копирования `/languages`.
+Поддерживайте локальный глоссарий SQLite.
+Применять глоссарий перед переводом API через заполнители.
+Храните историю перевода в SQLite.
+Экспорт истории в JSON, CSV или Markdown.
+Настройка базового URL, ключа API, языков по умолчанию и тайм-аута.
+Запуск единичных тестов без реальных HTTP-запросов.## ТребованияPython 3.12
+- Ув##Установка```bash
+uv sync
+```
+## CLI помощь```bash
+uv run docstrans --help
+```
+Перед командой должны быть размещены глобальные опции:```bash
+docstrans [GLOBAL_OPTIONS] COMMAND [COMMAND_OPTIONS]
+```
+Важные глобальные варианты:```bash
+--config-path PATH
+--db-path PATH
+--base-url URL
+--api-key TEXT
+--timeout FLOAT
+--verbose
+--no-color
+```
+## КонфигурацияКонфигурация решается в таком порядке:1. Вариант CLI.
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:19:25
+> uv run docstrans glossary-add "deployment pipeline" "конвейер развертывания" --source-lang en --target-lang ru
+Error: glossary term already exists.
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:20:02
+> uv run docstrans glossary-list
+┏━━━━┳━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━┓
+┃ ID ┃ Source term         ┃ Target term            ┃ Langs  ┃ Case sensitive ┃
+┡━━━━╇━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━┩
+│ 1  │ deployment pipeline │ конвейер развертывания │ en->ru │ no             │
+└────┴─────────────────────┴────────────────────────┴────────┴────────────────┘
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:20:08
+> uv run docstrans translate-text "Configure the deployment pipeline before release" --source en --target ru
+Настройка конвейер развертывания перед выпуском
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:20:16
+> uv run docstrans detect-language "Привет"
+Language: ru
+Confidence: 30.0
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:21:22
+> uv run docstrans history-list
+┏━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ ID ┃ Created at           ┃ Kind ┃ Langs  ┃ Source preview              ┃ Result preview              ┃
+┡━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ 14 │ 2026-05-25T19:20:16Z │ text │ en->ru │ Configure the deployment    │ Настройка конвейер          │
+│    │                      │      │        │ ...                         │ развер...                   │
+│ 13 │ 2026-05-25T19:18:35Z │ file │ en->ru │ # Docs Translator CLI       │ Переводчик документов       │
+│    │                      │      │        │ Doc...                      │ CLI...                      │
+│ 12 │ 2026-05-25T19:17:42Z │ text │ en->ru │ Configure the deployment    │ Настройка конвейер          │
+│    │                      │      │        │ ...                         │ развер...                   │
+│ 11 │ 2026-05-25T19:17:36Z │ text │ en->ru │ Hello world                 │ Привет, мир                 │
+│ 10 │ 2026-05-25T17:57:11Z │ file │ en->ru │ # Docs Translator CLI       │ Переводчик документов       │
+│    │                      │      │        │ Doc...                      │ CLI...                      │
+│ 9  │ 2026-05-25T17:56:24Z │ text │ en->ru │ Configure the deployment    │ Настройка конвейер          │
+│    │                      │      │        │ ...                         │ развер...                   │
+│ 8  │ 2026-05-25T17:56:03Z │ text │ en->ru │ Open the configuration file │ Откройте файл конфигурации  │
+│ 7  │ 2026-05-25T17:55:25Z │ text │ en->ru │ Hello world                 │ Привет, мир                 │
+│ 6  │ 2026-05-25T17:44:18Z │ text │ en->ru │ Open the configuration file │ Откройте файл конфигурации  │
+│ 5  │ 2026-05-25T17:15:05Z │ file │ ru->en │ # Docs Translator CLI       │ #Docs Translator CLI CLI    │
+│    │                      │      │        │ CLI...                      │ ...                         │
+│ 4  │ 2026-05-25T17:14:19Z │ file │ en->ru │ # Docs Translator CLI       │ Переводчик документов       │
+│    │                      │      │        │ CLI...                      │ CLI...                      │
+│ 3  │ 2026-05-25T17:13:28Z │ text │ en->ru │ Configure the deployment    │ Настройка конвейер          │
+│    │                      │      │        │ ...                         │ развер...                   │
+│ 2  │ 2026-05-25T17:13:07Z │ text │ en->ru │ Open the configuration file │ Откройте файл конфигурации  │
+│ 1  │ 2026-05-25T17:10:58Z │ text │ en->ru │ Hello world                 │ Привет, мир                 │
+└────┴──────────────────────┴──────┴────────┴─────────────────────────────┴─────────────────────────────┘
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:21:51
+> uv run docstrans export-history history.json --format json
+Error: output file already exists: history.json
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:21:57
+> rm history.json 
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:22:03
+> uv run docstrans export-history history.json --format json
+History exported: history.json
+Records exported: 14
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:22:04
+> /usr/bin/cat history.json | head -n 30
+[
+  {
+    "id": 14,
+    "created_at": "2026-05-25T19:20:16Z",
+    "kind": "text",
+    "provider": "libretranslate",
+    "base_url": "http://localhost:5000",
+    "source_lang": "en",
+    "target_lang": "ru",
+    "input_path": null,
+    "output_path": null,
+    "source_text": "Configure the deployment pipeline before release",
+    "translated_text": "Настройка конвейер развертывания перед выпуском",
+    "source_hash": "51f2c73cb70f947915fbb8c3be55cd9404edbe23211d9144b094bfeef193fe4f",
+    "translated_hash": "7809cdf9ce627fa8fa042ff1109c186a97f8c88dc7da1f824b84f76981c6390c",
+    "glossary_terms_applied": 1,
+    "api_status_code": 200,
+    "duration_ms": 253
+  },
+  {
+    "id": 13,
+    "created_at": "2026-05-25T19:18:35Z",
+    "kind": "file",
+    "provider": "libretranslate",
+    "base_url": "http://localhost:5000",
+    "source_lang": "en",
+    "target_lang": "ru",
+    "input_path": "README.md",
+    "output_path": "README.ru.md",
+    "source_text": "# Docs Translator CLI\n\nDocs Translator CLI is a Python 3.12 command-line utility for translating documentation files and short text strings through a LibreTranslate-compatible REST API. It stores translation history and a user glossary in SQLite.\n\n## Features\n\n- Translate a text string through `POST /translate`.\n- Translate `.txt`, `.md`, and `.rst` files through `POST /translate`.\n- Detect language through `POST /detect`.\n- List supported languages through `GET /languages`.\n- Check local environment and API through `GET /health` with `/languages` fallback.\n- Maintain a local SQLite glossary.\n- Apply glossary terms before API translation through placeholders.\n- Store translation history in SQLite.\n- Export history to JSON, CSV, or Markdown.\n- Configure base URL, API key, default languages, and timeout.\n- Run unit tests without real HTTP requests.\n\n## Requirements\n\n- Python 3.12\n- uv\n\n## Installation\n\n```bash\nuv sync\n```\n\n## CLI help\n\n```bash\nuv run docstrans --help\n```\n\nGlobal options must be placed before the command:\n\n```bash\ndocstrans [GLOBAL_OPTIONS] COMMAND [COMMAND_OPTIONS]\n```\n\nImportant global options:\n\n```bash\n--config-path PATH\n--db-path PATH\n--base-url URL\n--api-key TEXT\n--timeout FLOAT\n--verbose\n--no-color\n```\n\n## Configuration\n\nConfiguration is resolved in this order:\n\n1. CLI option.\n2. Environment variable.\n3. JSON config file.\n4. Default value.\n\nDefault config file is computed with `platformdirs`, for example:\n\n```text\n~/.config/docs-translator-cli/config.json\n```\n\nDefault SQLite database path is computed with `platformdirs`, for example:\n\n```text\n~/.local/share/docs-translator-cli/docs-translator.sqlite3\n```\n\nSupported environment variables:\n\n| Variable | Purpose |\n|---|---|\n| `DOCSTRANS_BASE_URL` | LibreTranslate-compatible API base URL. |\n| `DOCSTRANS_API_KEY` | API key. |\n| `DOCSTRANS_DEFAULT_SOURCE` | Default source language. |\n| `DOCSTRANS_DEFAULT_TARGET` | Default target language. |\n| `DOCSTRANS_TIMEOUT_SECONDS` | HTTP timeout in seconds. |\n| `DOCSTRANS_DB_PATH` | SQLite database path. |\n| `DOCSTRANS_CONFIG_PATH` | Config file path. |\n| `DOCSTRANS_LOG_LEVEL` | Logging level. |\n\nSet local LibreTranslate:\n\n```bash\nuv run docstrans config-set base_url http://localhost:5000\n```\n\nSet API key:\n\n```bash\nuv run docstrans config-set api_key lt_xxxxxxxxx\n```\n\nShow effective config:\n\n```bash\nuv run docstrans config-show\nuv run docstrans config-show --json\nuv run docstrans config-show --show-secrets\n```\n\n## Running LibreTranslate locally\n\nIf the public API is unavailable or requires an API key, run a local LibreTranslate instance:\n\n```bash\ndocker run -it --rm -p 5000:5000 libretranslate/libretranslate\n```\n\nThen configure the CLI:\n\n```bash\nuv run docstrans config-set base_url http://localhost:5000\n```\n\n## Commands\n\n| Command | REST endpoint | Purpose |\n|---|---|---|\n| `translate-text` | `POST /translate` | Translate one string. |\n| `translate-file` | `POST /translate` | Translate documentation files. |\n| `detect-language` | `POST /detect` | Detect text language. |\n| `languages-list` | `GET /languages` | List supported API languages. |\n| `doctor` | `GET /health`, fallback `GET /languages` | Check local environment and API. |\n| `glossary-add` | none | Add a local glossary term. |\n| `glossary-list` | none | List local glossary terms. |\n| `glossary-remove` | none | Remove a glossary term. |\n| `history-list` | none | List translation history. |\n| `export-history` | none | Export translation history. |\n| `config-set` | none | Save config value. |\n| `config-show` | none | Show effective config. |\n\n## Examples\n\n### Check environment\n\n```bash\nuv run docstrans doctor\nuv run docstrans doctor --skip-api\nuv run docstrans doctor --json --skip-api\n```\n\n### Translate text\n\n```bash\nuv run docstrans translate-text \"Open the configuration file\" --source en --target ru\nuv run docstrans translate-text \"Open the configuration file\" --source en --target ru --json\nuv run docstrans translate-text \"Hello\" --source en --target es --output hello.es.txt\nuv run docstrans translate-text \"Hello\" --source en --target es --no-save\n```\n\nExpected normal output is only the translated text. JSON output contains `source_language`, `target_language`, `translated_text`, `provider`, and `saved_to_history`.\n\n### Translate file\n\n```bash\nuv run docstrans translate-file README.md --source en --target ru\nuv run docstrans translate-file README.md --source en --target ru --output README.ru.md --overwrite\nuv run docstrans translate-file docs/install.txt --source en --target de --create-dirs\nuv run docstrans translate-file README.md --source en --target ru --json\n```\n\nIf `--output` is omitted, output is generated beside the input file:\n\n| Input | Target | Output |\n|---|---|---|\n| `README.md` | `ru` | `README.ru.md` |\n| `docs/install.txt` | `en` | `docs/install.en.txt` |\n\nMarkdown fenced code blocks, inline code, and URLs are protected by default.\n\n### Detect language\n\n```bash\nuv run docstrans detect-language \"Bonjour tout le monde\"\nuv run docstrans detect-language \"Bonjour tout le monde\" --json\n```\n\n### List API languages\n\n```bash\nuv run docstrans languages-list\nuv run docstrans languages-list --json\nuv run docstrans languages-list --target-for en\n```\n\n### Glossary\n\n```bash\nuv run docstrans glossary-add \"deployment pipeline\" \"конвейер развертывания\" --source-lang en --target-lang ru\nuv run docstrans glossary-add \"pull request\" \"запрос на слияние\" --source-lang en --target-lang ru --note \"Git term\"\nuv run docstrans glossary-list --source-lang en --target-lang ru\nuv run docstrans glossary-list --search deployment --json\nuv run docstrans glossary-remove \"deployment pipeline\" --source-lang en --target-lang ru\n```\n\nDuplicate glossary terms fail unless `--replace` is used.\n\n### History\n\n```bash\nuv run docstrans history-list --limit 10\nuv run docstrans history-list --kind text --json\nuv run docstrans export-history history.json --format json --overwrite\nuv run docstrans export-history history.csv --format csv --overwrite\nuv run docstrans export-history history.md --format md --overwrite\n```\n\n## REST API details\n\nThe utility supports LibreTranslate-compatible APIs.\n\n### `POST /translate`\n\nRequest for one string:\n\n```json\n{\n  \"q\": \"Hello world\",\n  \"source\": \"en\",\n  \"target\": \"ru\",\n  \"format\": \"text\",\n  \"api_key\": \"only if configured\"\n}\n```\n\nRequest for file segments:\n\n```json\n{\n  \"q\": [\"First paragraph\", \"Second paragraph\"],\n  \"source\": \"en\",\n  \"target\": \"ru\",\n  \"format\": \"text\",\n  \"api_key\": \"only if configured\"\n}\n```\n\nExpected response:\n\n```json\n{\"translatedText\": \"Привет, мир\"}\n```\n\nor:\n\n```json\n{\"translatedText\": [\"Первый абзац\", \"Второй абзац\"]}\n```\n\n### `POST /detect`\n\n```json\n{\"q\": \"Bonjour\", \"api_key\": \"only if configured\"}\n```\n\nExpected response:\n\n```json\n[{\"confidence\": 90.0, \"language\": \"fr\"}]\n```\n\n### `GET /languages`\n\nExpected response:\n\n```json\n[{\"code\": \"en\", \"name\": \"English\", \"targets\": [\"ru\", \"de\", \"fr\"]}]\n```\n\n### `GET /health`\n\nExpected response:\n\n```json\n{\"status\": \"ok\"}\n```\n\n## SQLite storage\n\nSQLite is initialized automatically on first CLI startup. The schema uses simple migrations through `schema_migrations`.\n\nTables:\n\n- `schema_migrations`\n- `glossary_terms`\n- `translation_history`\n\nThe glossary stores source and target terms with language pair and case-sensitivity flag. Translation history stores translation kind, provider, base URL, languages, optional file paths, text previews, SHA-256 hashes, API status code, and duration.\n\nAPI keys are never stored in SQLite.\n\n## Logging\n\nLogs are written through `RotatingFileHandler` with:\n\n- `maxBytes=1048576`\n- `backupCount=3`\n- UTF-8 encoding\n\nDefault path is computed with `platformdirs`, for example:\n\n```text\n~/.local/state/docs-translator-cli/docs-translator.log\n```\n\nAPI keys are masked in output and not written to logs.\n\n## Exit codes\n\n| Code | Meaning |\n|---:|---|\n| 0 | Success. |\n| 2 | CLI validation error. |\n| 3 | Config error. |\n| 4 | Local data not found. |\n| 5 | File error. |\n| 6 | Local data conflict. |\n| 10 | Network error or timeout. |\n| 11 | API authorization error. |\n| 12 | API rate limit. |\n| 13 | Invalid API request. |\n| 14 | API server error. |\n| 20 | Unexpected internal error. |\n\n## Typical errors\n\n### Public LibreTranslate requires an API key\n\nUse a self-hosted LibreTranslate instance or set an API key:\n\n```bash\nuv run docstrans config-set api_key lt_xxxxxxxxx\n```\n\n### API unavailable\n\nCheck the endpoint:\n\n```bash\nuv run docstrans doctor\n```\n\nUse local Docker instance:\n\n```bash\ndocker run -it --rm -p 5000:5000 libretranslate/libretranslate\nuv run docstrans config-set base_url http://localhost:5000\n```\n\n### Output file already exists\n\nUse a different path or explicitly allow overwrite:\n\n```bash\nuv run docstrans translate-file README.md --target ru --overwrite\n```\n\n### Wrong config JSON\n\nOpen the config path shown by:\n\n```bash\nuv run docstrans config-show\n```\n\nFix JSON syntax or delete the file to recreate it.\n\n## Testing\n\n```bash\nuv run pytest\n```\n\nTests use temporary paths and mocked/fake HTTP clients. They do not perform real network requests.\n\n## Linting and formatting\n\n```bash\nuv run ruff check .\nuv run ruff format --check .\n```\n\n## Final verification\n\n```bash\nuv sync\nuv run docstrans --help\nuv run docstrans config-show\nuv run docstrans doctor --skip-api\nuv run pytest\nuv run ruff check .\nuv run ruff format --check .\n```\n",
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:22:19
+> uv run docstrans show-config
+Usage: docstrans [OPTIONS] COMMAND [ARGS]...
+Try 'docstrans --help' for help.
+╭─ Error ───────────────────────────────────────────────────────────────────────────────────────────────╮
+│ No such command 'show-config'.                                                                        │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────╯
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:23:01
+> uv run docstrans config-show
+┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
+┃ Key            ┃ Value                                                                   ┃ Source   ┃
+┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
+│ base_url       │ http://localhost:5000                                                   │ config   │
+│ api_key        │ not set                                                                 │ none     │
+│ default_source │ auto                                                                    │ default  │
+│ default_target │ ru                                                                      │ default  │
+│ timeout        │ 20.0                                                                    │ default  │
+│ config_path    │ /home/stormy23/.config/docs-translator-cli/config.json                  │ computed │
+│ db_path        │ /home/stormy23/.local/share/docs-translator-cli/docs-translator.sqlite3 │ computed │
+│ log_path       │ /home/stormy23/.local/state/docs-translator-cli/docs-translator.log     │ computed │
+└────────────────┴─────────────────────────────────────────────────────────────────────────┴──────────┘
+stormy23@stormy23-laptop ~/p/docs-translator-cli-chatgpt 2026-05-25 22:23:07
+> 
+

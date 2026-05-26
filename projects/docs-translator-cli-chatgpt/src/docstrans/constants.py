@@ -1,0 +1,23 @@
+APP_NAME = "docs-translator-cli"
+PACKAGE_NAME = "docstrans"
+DB_FILENAME = "docs-translator.sqlite3"
+CONFIG_FILENAME = "config.json"
+LOG_FILENAME = "docs-translator.log"
+DEFAULT_BASE_URL = "https://libretranslate.com"
+DEFAULT_SOURCE = "auto"
+DEFAULT_TARGET = "ru"
+DEFAULT_TIMEOUT = 20.0
+PROVIDER = "libretranslate"
+SUPPORTED_FILE_EXTENSIONS = {".txt", ".md", ".rst"}
+SUPPORTED_EXPORT_FORMATS = {"json", "csv", "md"}
+
+EXIT_CONFIG = 3
+EXIT_NOT_FOUND = 4
+EXIT_FILE = 5
+EXIT_CONFLICT = 6
+EXIT_NETWORK = 10
+EXIT_AUTH = 11
+EXIT_RATE_LIMIT = 12
+EXIT_BAD_REQUEST = 13
+EXIT_SERVER = 14
+EXIT_INTERNAL = 20
